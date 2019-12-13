@@ -10,6 +10,7 @@ ROOT_URLCONF = "core.urls"
 INSTALLED_APPS = [
  "django.contrib.contenttypes",
  "django.contrib.staticfiles",
+ "sass_processor",
  "core"
 ]
 
@@ -22,6 +23,13 @@ MIDDLEWARE = [
 ]
 
 STATIC_URL = "/static/"
+STATIC_ROOT = os.path.abspath(f"{BASE_DIR}/../static")
+if DEBUG:
+    MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
+else:
+     MEDIA_ROOT = os.path.join(BASE_DIR, "..", "uploads")
+MEDIA_URL = "/uploads/"
+SASS_PROCESSOR_ROOT = os.path.abspath(os.path.join(BASE_DIR, "core", "static"))
 
 TEMPLATES = [{
  "BACKEND": "django.template.backends.django.DjangoTemplates",

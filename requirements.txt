@@ -1,6 +1,13 @@
-django==3.0
+django==2.2.8
 requests
 beautifulsoup4
+django-compressor
+six
 
 libsass
-django_sass_processor
+django-sass-processor
+rjsmin
+rcssmin
+
+
+
