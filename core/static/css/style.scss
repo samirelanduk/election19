@@ -28,16 +28,28 @@ table {
 
     tr {
         width: 100%;
+
         td {
             text-align: right;
             width: 50%;
 
-            .bar {
-                height: 10px;
-                width: 0%;
-                transition-property: "width";
-                transition: 1s;
+            .data {
+                display: flex;
+
+                .bar {
+                    height: 10px;
+                    width: 0%;
+                    transition-property: "width";
+                    transition: 1s;
+                }
+
+                span {
+                    font-size: 8px;
+                    margin-left: 5px;
+                }
             }
+
+            
         }
     }
 }

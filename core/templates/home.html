@@ -18,23 +18,65 @@
 
 <div class="data-summary">
     <table id="seatsTable">
-        <tr><td>Conservative</td><td><div class="bar"></div></tr>
-        <tr><td>Labour</td><td><div class="bar"></div></tr>
-        <tr><td>Scottish National Party</td><td><div class="bar"></div></tr>
-        <tr><td>Liberal Democrat</td><td><div class="bar"></div></tr>
-        <tr><td>Green</td><td><div class="bar"></div></tr>
-        <tr><td>The Brexit Party</td><td><div class="bar"></div></tr>
-        <tr><td>Other</td><td><div class="bar"></div></tr>
+        <tr>
+            <td>Conservative</td>
+            <td><div class="data"><div class="bar"></div><span></span></div>
+        </tr>
+        <tr>
+            <td>Labour</td>
+            <td><div class="data"><div class="bar"></div><span></span></div>
+        </tr>
+        <tr>
+            <td>Scottish National Party</td>
+            <td><div class="data"><div class="bar"></div><span></span></div>
+        </tr>
+        <tr>
+            <td>Liberal Democrat</td>
+            <td><div class="data"><div class="bar"></div><span></span></div>
+        </tr>
+        <tr>
+            <td>Green</td>
+            <td><div class="data"><div class="bar"></div><span></span></div>
+        </tr>
+        <tr>
+            <td>The Brexit Party</td>
+            <td><div class="data"><div class="bar"></div><span></span></div>
+        </tr>
+        <tr>
+            <td>Other</td>
+            <td><div class="data"><div class="bar"></div><span></span></div>
+        </tr>
     </table>
 
     <table id="votesTable">
-        <tr><td>Conservative</td><td><div class="bar"></div></tr>
-        <tr><td>Labour</td><td><div class="bar"></div></tr>
-        <tr><td>Scottish National Party</td><td><div class="bar"></div></tr>
-        <tr><td>Liberal Democrat</td><td><div class="bar"></div></tr>
-        <tr><td>Green</td><td><div class="bar"></div></tr>
-        <tr><td>The Brexit Party</td><td><div class="bar"></div></tr>
-        <tr><td>Other</td><td><div class="bar"></div></tr>
+        <tr>
+            <td>Conservative</td>
+            <td><div class="data"><div class="bar"></div><span></span></div>
+        </tr>
+        <tr>
+            <td>Labour</td>
+            <td><div class="data"><div class="bar"></div><span></span></div>
+        </tr>
+        <tr>
+            <td>Scottish National Party</td>
+            <td><div class="data"><div class="bar"></div><span></span></div>
+        </tr>
+        <tr>
+            <td>Liberal Democrat</td>
+            <td><div class="data"><div class="bar"></div><span></span></div>
+        </tr>
+        <tr>
+            <td>Green</td>
+            <td><div class="data"><div class="bar"></div><span></span></div>
+        </tr>
+        <tr>
+            <td>The Brexit Party</td>
+            <td><div class="data"><div class="bar"></div><span></span></div>
+        </tr>
+        <tr>
+            <td>Other</td>
+            <td><div class="data"><div class="bar"></div><span></span></div>
+        </tr>
     </table>
 </div>
 {% include "map.svg" %}
@@ -65,8 +107,10 @@ fetch(`/data/`).then(
             var bar = row.cells[1].getElementsByClassName("bar").item(0);
             bar.style.backgroundColor = lookup[party];
             if (table.id === "seatsTable") {
+                row.getElementsByTagName("span").item(0).innerText = summary.seats[party];
                 width = (summary.seats[party] / 6.5).toString().slice(0, 4) + "%";
             } else {
+                row.getElementsByTagName("span").item(0).innerText = summary.votes[party];
                 width = (summary.votes[party] / allVotes * 100).toString().slice(0, 4) + "%";
             }
             
