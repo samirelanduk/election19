@@ -13,10 +13,8 @@
 
 
 <div class="rule">
-    If <input class="pc">% of {% include "select.html"%} voters voted for {% include "select.html"%}.
+    If <input onkeyup="applyRules();" class="pc">% of {% include "select.html"%} voters voted for {% include "select.html"%}.
 </div>
-
-<button onclick="applyRules();">Apply</button>
 
 <div class="data-summary">
     <table id="seatsTable">
