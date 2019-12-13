@@ -9,9 +9,12 @@
 </head>
 <body>
 
-<h1>Election 19</h1>
-
-
+<div class="header">
+    <a href="/">
+        <img src="/static/images/logo.svg" alt="">
+    </a>
+    
+</div>
 
 <div class="rules">
     <div class="rule">
@@ -19,86 +22,94 @@
     </div>
 </div>
 
-<div class="data-summary">
-    <table id="seatsTable">
-        <tr>
-            <td>Conservative</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Labour</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Scottish National Party</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Liberal Democrat</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Democratic Unionist Party</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Sinn Féin</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Green</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>The Brexit Party</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Other</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-    </table>
+<div class="grid">
+    <div class="charts">
+        <div class="data-summary">
+            <h2>Seat Share</h2>
+            <table id="seatsTable">
+                <tr>
+                    <td>Conservative</td>
+                    <td><div class="data"><div class="bar"></div><span></span></div>
+                </tr>
+                <tr>
+                    <td>Labour</td>
+                    <td><div class="data"><div class="bar"></div><span></span></div>
+                </tr>
+                <tr>
+                    <td>Scottish National Party</td>
+                    <td><div class="data"><div class="bar"></div><span></span></div>
+                </tr>
+                <tr>
+                    <td>Liberal Democrat</td>
+                    <td><div class="data"><div class="bar"></div><span></span></div>
+                </tr>
+                <tr>
+                    <td>Democratic Unionist Party</td>
+                    <td><div class="data"><div class="bar"></div><span></span></div>
+                </tr>
+                <tr>
+                    <td>Sinn Féin</td>
+                    <td><div class="data"><div class="bar"></div><span></span></div>
+                </tr>
+                <tr>
+                    <td>Green</td>
+                    <td><div class="data"><div class="bar"></div><span></span></div>
+                </tr>
+                <tr>
+                    <td>The Brexit Party</td>
+                    <td><div class="data"><div class="bar"></div><span></span></div>
+                </tr>
+                <tr>
+                    <td>Other</td>
+                    <td><div class="data"><div class="bar"></div><span></span></div>
+                </tr>
+            </table>
 
-    <table id="votesTable">
-        <tr>
-            <td>Conservative</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Labour</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Scottish National Party</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Liberal Democrat</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Democratic Unionist Party</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Sinn Féin</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Green</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>The Brexit Party</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Other</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-    </table>
+            <table id="votesTable">
+                <h2>Vote Share</h2>
+                <tr>
+                    <td>Conservative</td>
+                    <td><div class="data"><div class="bar"></div><span></span></div>
+                </tr>
+                <tr>
+                    <td>Labour</td>
+                    <td><div class="data"><div class="bar"></div><span></span></div>
+                </tr>
+                <tr>
+                    <td>Scottish National Party</td>
+                    <td><div class="data"><div class="bar"></div><span></span></div>
+                </tr>
+                <tr>
+                    <td>Liberal Democrat</td>
+                    <td><div class="data"><div class="bar"></div><span></span></div>
+                </tr>
+                <tr>
+                    <td>Democratic Unionist Party</td>
+                    <td><div class="data"><div class="bar"></div><span></span></div>
+                </tr>
+                <tr>
+                    <td>Sinn Féin</td>
+                    <td><div class="data"><div class="bar"></div><span></span></div>
+                </tr>
+                <tr>
+                    <td>Green</td>
+                    <td><div class="data"><div class="bar"></div><span></span></div>
+                </tr>
+                <tr>
+                    <td>The Brexit Party</td>
+                    <td><div class="data"><div class="bar"></div><span></span></div>
+                </tr>
+                <tr>
+                    <td>Other</td>
+                    <td><div class="data"><div class="bar"></div><span></span></div>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="map">
+        {% include "map.svg" %}
+    </div>
 </div>
-{% include "map.svg" %}
 
 <script src="/static/js/main.js"></script>
 <script>
