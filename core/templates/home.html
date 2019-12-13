@@ -15,19 +15,74 @@
 <div class="rule">
     If <input class="pc">% of {% include "select.html"%} voters voted for {% include "select.html"%}.
 </div>
+
+<div class="data-summary">
+    <table id="seatsTable">
+        <tr><td>Conservative</td><td><div class="bar"></div></tr>
+        <tr><td>Labour</td><td><div class="bar"></div></tr>
+        <tr><td>Scottish National Party</td><td><div class="bar"></div></tr>
+        <tr><td>Liberal Democrat</td><td><div class="bar"></div></tr>
+        <tr><td>Green</td><td><div class="bar"></div></tr>
+        <tr><td>The Brexit Party</td><td><div class="bar"></div></tr>
+        <tr><td>Other</td><td><div class="bar"></div></tr>
+    </table>
+
+    <table id="votesTable">
+        <tr><td>Conservative</td><td><div class="bar"></div></tr>
+        <tr><td>Labour</td><td><div class="bar"></div></tr>
+        <tr><td>Scottish National Party</td><td><div class="bar"></div></tr>
+        <tr><td>Liberal Democrat</td><td><div class="bar"></div></tr>
+        <tr><td>Green</td><td><div class="bar"></div></tr>
+        <tr><td>The Brexit Party</td><td><div class="bar"></div></tr>
+        <tr><td>Other</td><td><div class="bar"></div></tr>
+    </table>
+</div>
 {% include "map.svg" %}
 
 <script>
+var lookup = {
+    "Conservative": "rgb(5, 117, 201)",
+    "Labour": "rgb(223, 29, 14)",
+    "Liberal Democrat": "rgb(239, 172, 24)",
+    "Scottish National Party": "rgb(248, 237, 46)",
+    "Green": "rgb(95, 178, 95)",
+    "The Brexit Party": "#02b6d7",
+    "Other": "gray"
+}
 var data = {};
 fetch(`/data/`).then(
     (response) => response.json()
 ).then((json) => {
     data = json;
 
+    var seatsTable = document.getElementById("seatsTable");
+    var votesTable = document.getElementById("votesTable");
+    var summary = summariseData(data);
+    const allVotes = Object.values(summary.votes).reduce((a,b) => a + b, 0);
+    for (var table of [seatsTable, votesTable]) {
+        for (var row of table.rows) {
+            var party = row.cells[0].innerText;
+            var bar = row.cells[1].getElementsByClassName("bar").item(0);
+            bar.style.backgroundColor = lookup[party];
+            if (table.id === "seatsTable") {
+                width = (summary.seats[party] / 6.5).toString().slice(0, 4) + "%";
+            } else {
+                width = (summary.votes[party] / allVotes * 100).toString().slice(0, 4) + "%";
+            }
+            
+            bar.style.width = width;
+        }
+    }
+    
+
     rule = [0, "Liberal Democrat", "Labour"];
 
     var newData = {}
     for (conId in data) {
+
+        
+
+        
 
 
         var parties = data[conId].parties;
@@ -46,14 +101,7 @@ fetch(`/data/`).then(
         );
 
 
-        var lookup = {
-            "Conservative": "rgb(5, 117, 201)",
-            "Labour": "rgb(223, 29, 14)",
-            "Liberal Democrat": "rgb(239, 172, 24)",
-            "Scottish National Party": "rgb(248, 237, 46)",
-            "Green": "rgb(95, 178, 95)",
-            "The Brexit Party": "#02b6d7"
-        }
+        
 
         if (newWinner !== prevWinner) {
             document.getElementById(conId).style.fill = lookup[newWinner];

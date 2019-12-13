@@ -21,3 +21,23 @@ select {
     background: white;
     font-family: Muli;
 }
+
+table {
+    width: 80%;
+    font-size: 12px;
+
+    tr {
+        width: 100%;
+        td {
+            text-align: right;
+            width: 50%;
+
+            .bar {
+                height: 10px;
+                width: 0%;
+                transition-property: "width";
+                transition: 1s;
+            }
+        }
+    }
+}
