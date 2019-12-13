@@ -9,6 +9,9 @@ rsync -vr . --exclude-from='.gitignore' --exclude='.git' $host:~/$host/source
 # Copy secrets
 scp core/secrets.py $host:~/$host/source/core/secrets.py
 
+# Copy data
+scp data.json $host:~/$host/source/data.json
+
 # Turn off debug on server
 ssh $host "sed -i s/\"DEBUG = True\"/\"DEBUG = False\"/g ~/$host/source/core/settings.py"
 
