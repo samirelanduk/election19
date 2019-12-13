@@ -1,0 +1,112 @@
+var lookup = {
+    "Conservative": "rgb(5, 117, 201)",
+    "Labour": "rgb(223, 29, 14)",
+    "Liberal Democrat": "rgb(239, 172, 24)",
+    "Scottish National Party": "rgb(248, 237, 46)",
+    "Green": "rgb(95, 178, 95)",
+    "The Brexit Party": "#02b6d7",
+    "Democratic Unionist Party": "#b51c4b",
+    "Sinn F\u00e9in": "#159b78",
+    "Other": "gray"
+}
+
+function getWinner(parties) {
+    return Object.keys(parties).reduce(
+        function(a, b){ return parties[a] > parties[b] ? a : b }
+    )
+}
+
+function summariseData(data) {
+    var parties = {
+        "Labour": 0, "Conservative": 0, "Liberal Democrat": 0,
+        "Scottish National Party": 0, "The Brexit Party": 0, "Green": 0,
+        "Democratic Unionist Party": 0, "Sinn F\u00e9in": 0, "Other": 0
+    }
+    var summary = {
+        "seats": {...parties}, "votes": {...parties}
+    }
+    for (var conId in data) {
+        for (var party in data[conId].parties) {
+            if (party in summary.votes) {
+                summary.votes[party] += data[conId].parties[party];
+            } else {
+                summary.votes.Other += data[conId].parties[party];
+            }
+        }
+        var winner = getWinner(data[conId].parties);
+        if (winner in summary.seats) {
+            summary.seats[winner] += 1;
+        } else {
+            summary.seats.Other += 1;
+        }
+    }
+    return summary;
+}
+
+function applyRules() {
+    var rule = document.getElementsByClassName("rule")[0];
+    var pc = parseInt(rule.getElementsByTagName("input")[0].value) / 100;
+    var party1 = rule.getElementsByTagName("select")[0].value;
+    var party2 = rule.getElementsByTagName("select")[1].value;
+    if (!isNaN(pc) && party1 !== "---" && party2 !== "---") {
+        newData = getNewData(data, pc, party1, party2);
+        updateBars(newData);
+        updateMap(newData);
+    }
+    
+}
+
+function getNewData(data, pc, party1, party2) {
+    var newData = JSON.parse(JSON.stringify(data));
+
+    for (conId in newData) {
+
+        var parties = newData[conId].parties;
+        var prevWinner = Object.keys(parties).reduce(
+            function(a, b){ return parties[a] > parties[b] ? a : b }
+        );
+
+        if (party1 in parties && party2 in parties) {
+            voters = parseInt(parties[party1] * pc);
+            parties[party1] -= voters;
+            parties[party2] += voters;
+        }
+        
+    }
+
+    return newData;
+}
+
+function updateBars(data) {
+    var seatsTable = document.getElementById("seatsTable");
+    var votesTable = document.getElementById("votesTable");
+    var summary = summariseData(data);
+    const allVotes = Object.values(summary.votes).reduce((a,b) => a + b, 0);
+    for (var table of [seatsTable, votesTable]) {
+        for (var row of table.rows) {
+            var party = row.cells[0].innerText;
+            var bar = row.cells[1].getElementsByClassName("bar").item(0);
+            bar.style.backgroundColor = lookup[party];
+            if (table.id === "seatsTable") {
+                row.getElementsByTagName("span").item(0).innerText = summary.seats[party];
+                width = (summary.seats[party] / 6.5).toString().slice(0, 4) + "%";
+            } else {
+                row.getElementsByTagName("span").item(0).innerText = summary.votes[party];
+                width = (summary.votes[party] / allVotes * 100).toString().slice(0, 4) + "%";
+            }
+            
+            bar.style.width = width;
+        }
+    }
+}
+
+function updateMap(data) {
+    for (conId in data) {
+
+        var parties = data[conId].parties;
+        var winner = getWinner(parties);
+        document.getElementById(conId).style.fill = lookup[winner];
+        document.getElementById(conId).style.stroke = "rgb(100, 100, 100)";
+        
+    } 
+}
