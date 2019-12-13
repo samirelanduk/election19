@@ -1,0 +1,23 @@
+body {
+    font-family: Muli;
+}
+
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    border-bottom: 2px solid black;
+    width: 30px;
+    text-align: center;
+    font-family: Muli;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    border-bottom: 2px solid black;
+    border-radius: 0px;
+    background: white;
+    font-family: Muli;
+}

@@ -1,9 +1,18 @@
+{% load sass_tags %}
+
 <!doctype html>
 <html>
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet" type="text/css"/>
+    <link href="{% sass_src 'css/style.scss' %}" rel="stylesheet" type="text/css">
 </head>
 <body>
 
+<h1>Election 19</h1>
+
+<div class="rule">
+    If <input class="pc">% of {% include "select.html"%} voters voted for {% include "select.html"%}.
+</div>
 {% include "map.svg" %}
 
 </body>

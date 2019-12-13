@@ -7,13 +7,6 @@ from bs4 import BeautifulSoup
 with open("bbc-codes.json") as f:
     data = json.load(f)
 
-with open("core/templates/home.html") as f:
-    data = f.read()
-import re
-ids = re.findall(r'id="(.+?)"', data)
-for id in ids: print(id)
-print(len(ids))
-
 print(len(data), "constituencies")
 for code, constituency in tqdm(list(data.items())):
     r = requests.get("https://www.bbc.co.uk/news/politics/constituencies/" + code)
@@ -26,8 +19,5 @@ for code, constituency in tqdm(list(data.items())):
         constituency["parties"][party] = votes
     sleep(0.5)
 
-'''with open("data.json", "w") as f:
-    json.dump(data, f)'''
-
-
-    
+with open("data.json", "w") as f:
+    json.dump(data, f)
