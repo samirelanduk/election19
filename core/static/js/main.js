@@ -44,33 +44,44 @@ function summariseData(data) {
 }
 
 function applyRules() {
-    var rule = document.getElementsByClassName("rule")[0];
-    var pc = parseInt(rule.getElementsByTagName("input")[0].value) / 100;
-    var party1 = rule.getElementsByTagName("select")[0].value;
-    var party2 = rule.getElementsByTagName("select")[1].value;
-    if (!isNaN(pc) && pc > 0 && pc <= 1 & party1 !== "---" && party2 !== "---") {
-        newData = getNewData(data, pc, party1, party2);
+    var ruleElements = document.getElementsByClassName("rule");
+    var rules = [];
+    for (var rule of ruleElements) {
+        var pc = parseInt(rule.getElementsByTagName("input")[0].value) / 100;
+        var party1 = rule.getElementsByTagName("select")[0].value;
+        var party2 = rule.getElementsByTagName("select")[1].value;
+        if (!isNaN(pc) && pc > 0 && pc <= 1 & party1 !== "---" && party2 !== "---") {
+            rules.push([pc, party1, party2])
+        }
+    }
+    if (rules.length) {
+        newData = getNewData(data, rules);
         updateBars(newData);
         updateMap(newData);
     }
     
 }
 
-function getNewData(data, pc, party1, party2) {
+function getNewData(data, rules) {
     var newData = JSON.parse(JSON.stringify(data));
 
     for (conId in newData) {
 
         var parties = newData[conId].parties;
-        var prevWinner = Object.keys(parties).reduce(
-            function(a, b){ return parties[a] > parties[b] ? a : b }
-        );
+        var oldParties = {...parties}
 
-        if (party1 in parties && party2 in parties) {
-            voters = parseInt(parties[party1] * pc);
-            parties[party1] -= voters;
-            parties[party2] += voters;
+        for (var rule of rules) {
+            if (rule[1] in parties && rule[2] in parties) {
+                voters = parseInt(oldParties[rule[1]] * rule[0]);
+                if (voters > parties[rule[1]]) {
+                    voters = parties[rule[1]];
+                }
+                parties[rule[1]] -= voters;
+                parties[rule[2]] += voters;
+            }
         }
+
+        
         
     }
 
@@ -109,4 +120,12 @@ function updateMap(data) {
         document.getElementById(conId).style.stroke = "rgb(100, 100, 100)";
         
     } 
+}
+
+function addRule() {
+    var rule = document.getElementsByClassName("rule").item(0);
+    var rules = document.getElementsByClassName("rules").item(0);
+    var newRule = rule.cloneNode(true);
+    newRule.getElementsByTagName("input")[0].value = "";
+    rules.appendChild(newRule);
 }
