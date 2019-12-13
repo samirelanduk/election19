@@ -112,24 +112,11 @@ var lookup = {
     "Other": "gray"
 }
 var data = {};
-fetch(`/data/`).then(
-    (response) => response.json()
-).then((json) => {
+fetch("/data/").then(
+    response => response.json()
+).then(json => {
     data = json;
     updateBars(data);
-
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-
 })
 
 function getWinner(parties) {
@@ -228,6 +215,7 @@ function updateMap(data) {
         var parties = data[conId].parties;
         var winner = getWinner(parties);
         document.getElementById(conId).style.fill = lookup[winner];
+        document.getElementById(conId).style.stroke = "rgb(100, 100, 100)";
         
     } 
 }
