@@ -1,0 +1,6 @@
+django==3.0
+requests
+beautifulsoup4
+
+libsass
+django_sass_processor
