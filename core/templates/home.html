@@ -24,7 +24,7 @@ fetch(`/data/`).then(
 ).then((json) => {
     data = json;
 
-    rule = [1, "Liberal Democrat", "Labour"];
+    rule = [0, "Liberal Democrat", "Labour"];
 
     var newData = {}
     for (conId in data) {
@@ -59,11 +59,47 @@ fetch(`/data/`).then(
             document.getElementById(conId).style.fill = lookup[newWinner];
             
         }
+        
+    }
+
+    function getWinner(parties) {
+        return Object.keys(parties).reduce(
+            function(a, b){ return parties[a] > parties[b] ? a : b }
+        )
+    }
+
+    function summariseData(data) {
+        var parties = {
+            "Labour": 0, "Conservative": 0, "Liberal Democrat": 0,
+            "Scottish National Party": 0, "The Brexit Party": 0, "Green": 0,
+            "Other": 0
+        }
+        var summary = {
+            "seats": {...parties}, "votes": {...parties}
+        }
+        for (var conId in data) {
+            for (var party in data[conId].parties) {
+                if (party in summary.votes) {
+                    summary.votes[party] += data[conId].parties[party];
+                } else {
+                    summary.votes.Other += data[conId].parties[party];
+                }
+            }
+            var winner = getWinner(data[conId].parties);
+            if (winner in summary.seats) {
+                summary.seats[winner] += 1;
+            } else {
+                summary.seats.Other += 1;
+            }
+        }
+        return summary;
     }
 
 
 })
 </script>
+
+
 
 </body>
 </html>
