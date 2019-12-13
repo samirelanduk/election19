@@ -2,6 +2,25 @@ body {
     font-family: Muli;
 }
 
+.rule {
+    display: flex;
+    align-items: center;
+
+    img {
+        width: 15px;
+        margin-right: 5px;
+        display: none;
+    }
+
+    button {
+        margin-left: 5px;
+    }
+
+    input, select {
+        margin: 0 5px;
+    }
+}
+
 input {
     -webkit-appearance: none;
     -moz-appearance: none;

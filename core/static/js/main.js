@@ -125,7 +125,21 @@ function updateMap(data) {
 function addRule() {
     var rule = document.getElementsByClassName("rule").item(0);
     var rules = document.getElementsByClassName("rules").item(0);
+    for (var rule of rules.getElementsByClassName("rule")) {
+        rule.getElementsByTagName("img").item(0).style.display = "inline";
+    }
     var newRule = rule.cloneNode(true);
     newRule.getElementsByTagName("input")[0].value = "";
     rules.appendChild(newRule);
+}
+
+function removeRule(event) {
+    event.target.parentNode.remove();
+    var rules = document.getElementsByClassName("rule");
+    if (rules.length === 1) {
+        for (var rule of rules) {
+            rule.getElementsByTagName("img").item(0).style.display = null;
+        }
+    }
+    applyRules();
 }
