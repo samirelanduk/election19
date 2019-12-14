@@ -33,7 +33,7 @@
         </select> voters in
         <select onchange="applyRules();" value="{{ rule.2 }}">
             <option{% if rule.2 == 'The whole UK'%} selected{% endif %}>The whole UK</option>
-            <option>{% if rule.2 == 'England'%} selected{% endif %}England</option>
+            <option{% if rule.2 == 'England'%} selected{% endif %}>England</option>
             <option{% if rule.2 == 'Scotland'%} selected{% endif %}>Scotland</option>
             <option{% if rule.2 == 'Wales'%} selected{% endif %}>Wales</option>
             <option{% if rule.2 == 'Northern Ireland'%} selected{% endif %}>Northern Ireland</option>
