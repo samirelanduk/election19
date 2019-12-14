@@ -18,7 +18,7 @@
 
 <div class="rules">
     <div class="rule">
-        <img src="/static/images/x.png" onclick="removeRule(event);">If <input onkeyup="applyRules();" class="pc">% of {% include "select.html"%} voters voted for {% include "select.html"%} <button onclick="addRule();">and...</button>
+        <img src="/static/images/x.png" onclick="removeRule(event);">If <input type="number" min="0" max="100" oninput="applyRules();" class="pc">% of {% include "select.html"%} voters voted for {% include "select.html"%} <button onclick="addRule();">and...</button>
     </div>
 </div>
 

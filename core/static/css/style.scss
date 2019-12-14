@@ -3,10 +3,6 @@ body {
     margin: 0
 }
 
-h2 {
-    font-size: 16px;
-}
-
 .grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -22,6 +18,7 @@ h2 {
 .data-summary {
     h2 {
         text-align: center;
+        font-size: 16px;
     }
 }
 
@@ -65,7 +62,7 @@ h2 {
         }
 
         input {
-            width: 20px;
+            width: 50px;
         }
         
         select {
@@ -80,75 +77,6 @@ h2 {
             color: darken(#9b51e0, 10%);
             background: none;
         }
-    }
-}
-
-
-
-@media screen and (min-width: 600px) {
-    .grid{
-        grid-template-columns: 1fr 1fr;
-        .map {
-            z-index: -999;
-            svg {
-                margin-top: -70px;
-                height: 85vh;
-            }
-        }
-    }
-
-    .rules {
-        font-size: 14px;
-        padding: 0;
-        
-        .rule {
-            input {
-                width: 30px;
-            }
-            select{
-                width: 120px;
-            }
-        }
-    }
-}
-
-
-
-@media screen and (min-width: 900px) {
-    .grid {
-        margin-right: 0;
-    }
-    h2 {
-        font-size: 22px;
-    }
-    .rules {
-        font-size: 22px;
-        padding: 0;
-        .rule {
-            input, select {
-                font-size: 20px;
-            }
-            input {
-                width: 30px;
-            }
-            select{
-                width: 160px;
-            }
-
-            button {
-                width: 80px;
-                border: 4px solid #9b51e0;
-                border-radius: 5px;
-                font-family: 'Muli', sans-serif;
-                font-size: 18px;
-                color: darken(#9b51e0, 10%);
-                background: none;
-            }
-        }
-    }
-
-    table {
-        font-size: 16px;
     }
 }
 
@@ -201,5 +129,66 @@ table {
 
             
         }
+    }
+}
+
+
+@media (min-width: 600px) {
+    .grid{
+        grid-template-columns: 1fr 1fr;
+        .map {
+            z-index: -999;
+            svg {
+                margin-top: -70px;
+                height: 85vh;
+            }
+        }
+    }
+
+    .rules {
+        font-size: 14px;
+        padding: 0;
+        
+        .rule {
+            select{
+                width: 120px;
+            }
+        }
+    }
+}
+
+
+@media (min-width: 900px) {
+    .grid {
+        margin-right: 0;
+    }
+    h2 {
+        font-size: 22px;
+    }
+    .rules {
+        font-size: 22px;
+        padding: 0;
+        .rule {
+            input, select {
+                font-size: 20px;
+            }
+            select{
+                width: 160px;
+            }
+
+            button {
+                width: 80px;
+                border: 4px solid #9b51e0;
+                border-radius: 5px;
+                font-family: 'Muli', sans-serif;
+                font-size: 18px;
+                color: darken(#9b51e0, 10%);
+                background: none;
+            }
+        }
+    }
+
+    table {
+        font-size: 16px;
     }
 }

@@ -50,7 +50,7 @@ function applyRules() {
         var pc = parseInt(rule.getElementsByTagName("input")[0].value) / 100;
         var party1 = rule.getElementsByTagName("select")[0].value;
         var party2 = rule.getElementsByTagName("select")[1].value;
-        if (!isNaN(pc) && pc > 0 && pc <= 1 & party1 !== "---" && party2 !== "---") {
+        if (!isNaN(pc) && pc > 0 && pc <= 1 & party1 !== "" && party2 !== "") {
             rules.push([pc, party1, party2])
         }
     }
