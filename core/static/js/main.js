@@ -179,11 +179,6 @@ function removeRule(event) {
     applyRules();
 }
 
-function svgHover() {
-
-    console.log("hover")
-}
-
 var svg = document.getElementsByTagName("svg").item(0);
 svg.addEventListener("mouseover", (event) => {
     var panel = document.getElementsByClassName("panel").item(0);
@@ -197,4 +192,3 @@ svg.addEventListener("mouseover", (event) => {
         panel.style.display = null;
     }
 })
-console.log(svg)
