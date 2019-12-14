@@ -166,14 +166,23 @@ function updateBars(newData) {
     document.getElementsByClassName("summary").item(0).innerText = summary.result;
 }
 
-function updateMap(data) {
-    for (conId in data) {
-
-        var parties = data[conId].parties;
-        var winner = getWinner(parties);
-        document.getElementById(conId).style.fill = lookup[winner];
+function updateMap(dataObj) {
+    var selector = document.getElementsByClassName("party-selector").item(0);
+    var party = selector.getElementsByTagName("span").item(0).innerText;
+    for (conId in dataObj) {
+        if (party === "All Parties") {
+            var parties = dataObj[conId].parties;
+            var winner = getWinner(parties);
+            document.getElementById(conId).style.fill = lookup[winner]; 
+        } else {
+            var proportion = party in dataObj[conId].parties ? dataObj[conId].parties[party] / (Object.values(dataObj[conId].parties).reduce((a, b) => a + b) * 0.5): 0;
+            var hex = (Math.round(proportion * 256)).toString(16);
+            hex = hex.length === 1 ? "0" + hex : hex;
+            hex = hex.length === 3 ? "ff" : hex;
+            console.log(hex)
+            document.getElementById(conId).style.fill = lookup[party] + hex;
+        }
         document.getElementById(conId).style.stroke = "rgb(100, 100, 100)";
-        
     } 
 }
 
@@ -200,6 +209,27 @@ function removeRule(event) {
         }
     }
     applyRules();
+}
+
+
+function changeParty(delta) {
+    var parties = [
+        "All Parties", "Conservative", "Labour", "Liberal Democrat",
+        "Scottish National Party", "Green", "The Brexit Party",
+        "Democratic Unionist Party", "Sinn Féin", "Plaid Cymru"
+    ]
+    var selector = document.getElementsByClassName("party-selector").item(0);
+    var text = selector.getElementsByTagName("span").item(0);
+    var index = parties.indexOf(text.innerText);
+    var nextIndex = index + delta;
+    if (nextIndex >= parties.length) {
+        nextIndex = 0;
+    }
+    if (nextIndex < 0) {
+        nextIndex = parties.length - 1;
+    }
+    text.innerText = parties[nextIndex];
+    updateMap(newData);
 }
 
 var svg = document.getElementsByTagName("svg").item(0);
