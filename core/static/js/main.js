@@ -217,7 +217,9 @@ svg.addEventListener("mouseover", (event) => {
         var majority = info.parties[sortedParties[0]] - info.parties[sortedParties[1]];
         panel.getElementsByClassName("majority").item(0).innerText = `${sortedParties[0]} majority: ${formatNumber(majority)}`;
         for (var party of sortedParties ) {
-            results.innerHTML += `<div><span style="border-bottom: 1.5px solid ${lookup[party] || lookup["Other"]}C0">${party}</span>: ${formatNumber(info.parties[party])}</div>`
+            var diff = info.parties[party] - data[event.target.id].parties[party];
+            diff = diff ? `(${diff > 0 ? "+" : ""}${formatNumber(diff)})` : "";
+            results.innerHTML += `<div><span style="border-bottom: 1.5px solid ${lookup[party] || lookup["Other"]}C0">${party}</span>: ${formatNumber(info.parties[party])} ${diff}</div>`
         }
     } else {
         panel.style.display = null;
