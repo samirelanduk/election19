@@ -213,7 +213,10 @@ svg.addEventListener("mouseover", (event) => {
         panel.getElementsByClassName("constituency").item(0).innerText = info["name"];
         var results = panel.getElementsByClassName("results").item(0);
         results.innerHTML = "";
-        for (var party of Object.keys(info.parties).sort(function(a,b){return info.parties[b]-info.parties[a]}) ) {
+        var sortedParties = Object.keys(info.parties).sort(function(a,b){return info.parties[b]-info.parties[a]});
+        var majority = info.parties[sortedParties[0]] - info.parties[sortedParties[1]];
+        panel.getElementsByClassName("majority").item(0).innerText = `${sortedParties[0]} majority: ${formatNumber(majority)}`;
+        for (var party of sortedParties ) {
             results.innerHTML += `<div><span style="border-bottom: 1.5px solid ${lookup[party] || lookup["Other"]}C0">${party}</span>: ${formatNumber(info.parties[party])}</div>`
         }
     } else {
