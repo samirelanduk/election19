@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.conf import settings
 
 parties = {
-    "CON": "Conservative", "LAB": "Labour",
+    "CON": "Conservative", "LAB": "Labour", "PC": "Plaid Cymru",
     "LD": "Liberal Democrat", "GREEN": "Green",
     "SNP": "Scottish National Party", "BP": "The Brexit Party",
     "DUP": "Democratic Unionist Party", "SF": "Sinn Féin"

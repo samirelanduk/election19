@@ -5,6 +5,7 @@ var lookup = {
     "Scottish National Party": "rgb(248, 237, 46)",
     "Green": "rgb(95, 178, 95)",
     "The Brexit Party": "#02b6d7",
+    "Plaid Cymru": "rgb(19, 229, 148)",
     "Democratic Unionist Party": "#b51c4b",
     "Sinn F\u00e9in": "#159b78",
     "Other": "gray"
@@ -20,7 +21,8 @@ function summariseData(data) {
     var parties = {
         "Labour": 0, "Conservative": 0, "Liberal Democrat": 0,
         "Scottish National Party": 0, "The Brexit Party": 0, "Green": 0,
-        "Democratic Unionist Party": 0, "Sinn F\u00e9in": 0, "Other": 0
+        "Democratic Unionist Party": 0, "Sinn F\u00e9in": 0,
+        "Plaid Cymru": 0, "Other": 0
     }
     var summary = {
         "seats": {...parties}, "votes": {...parties}
@@ -72,7 +74,7 @@ function updateLink(rules) {
         "Conservative": "con", "Labour": "lab", "Liberal Democrat": "ld",
         "Green": "green", "Scottish National Party": "snp",
         "The Brexit Party": "bp", "Democratic Unionist Party": "dup",
-        "Sinn Féin": "sf"
+        "Sinn Féin": "sf", "Plaid Cymru": "pc"
     }
     regions = {
         "England": "eng", "Scotland": "sco", "Wales": "wal", "Northern Ireland": "ni"
