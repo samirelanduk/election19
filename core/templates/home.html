@@ -16,9 +16,9 @@
 </div>
 
 <div class="rules">
-    {% for rule in rules%}
+    {% for rule in rules %}
     <div class="rule">
-        <img src="/static/images/x.png" onclick="removeRule(event);">
+        <img src="/static/images/x.png" onclick="removeRule(event);"{% if rules|length > 1%} style="display: inline"{% endif %}>
         If <input value="{{ rule.0 }}" type="number" min="0" max="100" oninput="applyRules();" class="pc">% of
         <select onchange="applyRules();">
             <option></option>
@@ -52,6 +52,11 @@
         <button onclick="addRule();">and...</button>
     </div>
     {% endfor %}
+</div>
+
+<div class="link">
+    <span>Link to this combination:</span>
+    <a href="{{ root }}" data-root="{{ root }}">{{ root }}</a>
 </div>
 
 <div class="grid">

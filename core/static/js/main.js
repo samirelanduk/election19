@@ -55,6 +55,7 @@ function applyRules() {
             rules.push([pc, party1, party2, region])
         }
     }
+    updateLink(rules);
     if (rules.length) {
         newData = getNewData(data, rules);
         updateBars(newData);
@@ -62,6 +63,37 @@ function applyRules() {
     } else {
         updateBars(data);
         updateMap(data);
+    }
+    
+}
+
+function updateLink(rules) {
+    parties = {
+        "Conservative": "con", "Labour": "lab", "Liberal Democrat": "ld",
+        "Green": "green", "Scottish National Party": "snp",
+        "The Brexit Party": "bp", "Democratic Unionist Party": "dup",
+        "Sinn Féin": "sf"
+    }
+    regions = {
+        "England": "eng", "Scotland": "sco", "Wales": "wal", "Northern Ireland": "ni"
+    }
+    var link = document.getElementsByClassName("link").item(0).getElementsByTagName("a").item(0);
+    var args = [];
+    for (var rule of rules) {
+        var arg = `${parties[rule[1]]}-${parties[rule[2]]}=${rule[0] * 100}`;
+        if (rule[3] !== "The whole UK") {
+            arg = arg.replace("=", `-${regions[rule[3]]}=`)
+        }
+        args.push(arg);
+    }
+    if (args.length) {
+        args = args.join("&");
+        var root = link.dataset.root;
+        link.innerHTML = `${root}/?${args}`;
+        link.href = `${root}/?${args}`;
+        link.parentNode.style.display = "block";
+    } else {
+        link.parentNode.style.display = null;
     }
     
 }

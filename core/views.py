@@ -1,6 +1,7 @@
 import json
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.conf import settings
 
 parties = {
     "CON": "Conservative", "LAB": "Labour",
@@ -28,7 +29,10 @@ def home(request):
                             parties[words[1].upper()]
                         ])
     if not rules: rules = [["", "", "The whole UK", ""]]
-    return render(request, "home.html", {"rules": rules})
+    root = f"http{'' if settings.DEBUG else 's'}://{request.get_host()}"
+    return render(request, "home.html", {
+        "rules": rules, "root": root
+    })
 
 
 def data(request):
