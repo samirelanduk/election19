@@ -81,7 +81,6 @@ function updateLink(rules) {
     var args = [];
     for (var rule of rules) {
         var arg = `${parties[rule[1]]}-${parties[rule[2]]}=${Math.round(rule[0] * 100)}`;
-        console.log(arg);
         if (rule[3] !== "The whole UK") {
             arg = arg.replace("=", `-${regions[rule[3]]}=`)
         }
@@ -117,11 +116,7 @@ function getNewData(data, rules) {
                 parties[rule[2]] += voters;
             }
         }
-
-        
-        
     }
-
     return newData;
 }
 
@@ -166,6 +161,9 @@ function addRule() {
         rule.getElementsByTagName("img").item(0).style.display = "inline";
     }
     var newRule = rule.cloneNode(true);
+    for (var option of newRule.getElementsByTagName("option")) {
+        option.selected = false;
+    }
     newRule.getElementsByTagName("input")[0].value = "";
     rules.appendChild(newRule);
 }
