@@ -139,12 +139,23 @@ table {
     }
 }
 
+.map {
+    .panel {
+        display: none;
+        border: 1px solid black;
+        position: fixed;
+        background-color: white;
+        cursor: default;
+        font-size: 9px;
+        padding: 5px 2px;
+    }
+}
+
 
 @media (min-width: 600px) {
     .grid{
         grid-template-columns: 1fr 1fr;
         .map {
-            z-index: -999;
             svg {
                 margin-top: -70px;
                 height: 85vh;

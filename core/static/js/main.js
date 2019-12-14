@@ -178,3 +178,23 @@ function removeRule(event) {
     }
     applyRules();
 }
+
+function svgHover() {
+
+    console.log("hover")
+}
+
+var svg = document.getElementsByTagName("svg").item(0);
+svg.addEventListener("mouseover", (event) => {
+    var panel = document.getElementsByClassName("panel").item(0);
+    if (event.target.tagName.toLowerCase() === "path" && event.target.id.length) {
+        panel.style.display = "block";
+        panel.style.left = event.clientX + "px";
+        panel.style.top = event.clientY + "px";
+        var info = data[event.target.id];
+        panel.getElementsByClassName("constituency").item(0).innerText = info["name"]
+    } else {
+        panel.style.display = null;
+    }
+})
+console.log(svg)
