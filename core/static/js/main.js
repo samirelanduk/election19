@@ -49,15 +49,19 @@ function applyRules() {
     for (var rule of ruleElements) {
         var pc = parseInt(rule.getElementsByTagName("input")[0].value) / 100;
         var party1 = rule.getElementsByTagName("select")[0].value;
-        var party2 = rule.getElementsByTagName("select")[1].value;
-        if (!isNaN(pc) && pc > 0 && pc <= 1 & party1 !== "" && party2 !== "") {
-            rules.push([pc, party1, party2])
+        var party2 = rule.getElementsByTagName("select")[2].value;
+        var region = rule.getElementsByTagName("select")[1].value;
+        if (!isNaN(pc) && pc > 0 && pc <= 1 && party1 !== "" && party2 !== "") {
+            rules.push([pc, party1, party2, region])
         }
     }
     if (rules.length) {
         newData = getNewData(data, rules);
         updateBars(newData);
         updateMap(newData);
+    } else {
+        updateBars(data);
+        updateMap(data);
     }
     
 }
@@ -71,7 +75,7 @@ function getNewData(data, rules) {
         var oldParties = {...parties}
 
         for (var rule of rules) {
-            if (rule[1] in parties && rule[2] in parties) {
+            if (rule[1] in parties && rule[2] in parties && (rule[3] === "The whole UK" || rule[3][0] === conId[0])) {
                 voters = parseInt(oldParties[rule[1]] * rule[0]);
                 if (voters > parties[rule[1]]) {
                     voters = parties[rule[1]];
