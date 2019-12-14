@@ -43,7 +43,6 @@ body {
     grid-gap: 15px;
     font-size: 10px;
     padding: 5px;
-    z-index: 10;
 
     .rule {
 
@@ -158,7 +157,6 @@ table {
         grid-template-columns: 1fr 1fr;
         .map {
             svg {
-                margin-top: -70px;
                 height: 85vh;
             }
         }
