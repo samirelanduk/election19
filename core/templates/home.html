@@ -168,9 +168,9 @@
 
 <script src="/static/js/main.js"></script>
 <script>
-var data = {};
+var data = {}; var newData = {};
 fetch("/data/").then(response => response.json()).then(json => {
-    data = json;
+    data = json; newData = json;
     applyRules();
 })
 </script>

@@ -22,7 +22,7 @@ function formatNumber(num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 }
 
-function summariseData(data) {
+function summariseData(dataObj) {
     var parties = {
         "Labour": 0, "Conservative": 0, "Liberal Democrat": 0,
         "Scottish National Party": 0, "The Brexit Party": 0, "Green": 0,
@@ -32,15 +32,15 @@ function summariseData(data) {
     var summary = {
         "seats": {...parties}, "votes": {...parties}, "result": "ss"
     }
-    for (var conId in data) {
+    for (var conId in dataObj) {
         for (var party in data[conId].parties) {
             if (party in summary.votes) {
-                summary.votes[party] += data[conId].parties[party];
+                summary.votes[party] += dataObj[conId].parties[party];
             } else {
-                summary.votes.Other += data[conId].parties[party];
+                summary.votes.Other += dataObj[conId].parties[party];
             }
         }
-        var winner = getWinner(data[conId].parties);
+        var winner = getWinner(dataObj[conId].parties);
         if (winner in summary.seats) {
             summary.seats[winner] += 1;
         } else {
@@ -49,7 +49,7 @@ function summariseData(data) {
     }
     var winner = getWinner(summary.seats);
     if (summary.seats[winner] > 325) {
-        var majority = summary.seats[winner] - (650 - summary.seats[winner]);
+        var majority = (summary.seats[winner] - 325) * 2;
         summary.result = `${winner} majority of ${majority}`
     } else {
         summary.result = `Hung Parliament (${winner} largest party)`
@@ -113,7 +113,7 @@ function updateLink(rules) {
 }
 
 function getNewData(data, rules) {
-    var newData = JSON.parse(JSON.stringify(data));
+    newData = JSON.parse(JSON.stringify(data));
 
     for (conId in newData) {
 
@@ -209,11 +209,11 @@ svg.addEventListener("mouseover", (event) => {
         panel.style.display = "block";
         panel.style.left = event.pageX + "px";
         panel.style.top = event.pageY + "px";
-        var info = data[event.target.id];
+        var info = newData[event.target.id];
         panel.getElementsByClassName("constituency").item(0).innerText = info["name"];
         var results = panel.getElementsByClassName("results").item(0);
         results.innerHTML = "";
-        for (var party in info.parties) {
+        for (var party of Object.keys(info.parties).sort(function(a,b){return info.parties[b]-info.parties[a]}) ) {
             results.innerHTML += `<div><span style="border-bottom: 1.5px solid ${lookup[party] || lookup["Other"]}C0">${party}</span>: ${formatNumber(info.parties[party])}</div>`
         }
     } else {
