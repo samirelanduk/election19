@@ -1,20 +1,25 @@
 var lookup = {
-    "Conservative": "rgb(5, 117, 201)",
-    "Labour": "rgb(223, 29, 14)",
-    "Liberal Democrat": "rgb(239, 172, 24)",
-    "Scottish National Party": "rgb(248, 237, 46)",
-    "Green": "rgb(95, 178, 95)",
+    "Conservative": "#0575c9",
+    "Labour": "#df1d0e",
+    "Liberal Democrat": "#efac18",
+    "Scottish National Party": "#f8ed2e",
+    "Green": "#5fb25f",
     "The Brexit Party": "#02b6d7",
-    "Plaid Cymru": "rgb(19, 229, 148)",
+    "Plaid Cymru": "#13e594",
     "Democratic Unionist Party": "#b51c4b",
     "Sinn F\u00e9in": "#159b78",
-    "Other": "gray"
+    "Other": "#999999"
 }
 
 function getWinner(parties) {
     return Object.keys(parties).reduce(
         function(a, b){ return parties[a] > parties[b] ? a : b }
     )
+}
+
+
+function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 }
 
 function summariseData(data) {
@@ -189,7 +194,12 @@ svg.addEventListener("mouseover", (event) => {
         panel.style.left = event.clientX + "px";
         panel.style.top = event.clientY + "px";
         var info = data[event.target.id];
-        panel.getElementsByClassName("constituency").item(0).innerText = info["name"]
+        panel.getElementsByClassName("constituency").item(0).innerText = info["name"];
+        var results = panel.getElementsByClassName("results").item(0);
+        results.innerHTML = "";
+        for (var party in info.parties) {
+            results.innerHTML += `<div><span style="border-bottom: 1.5px solid ${lookup[party] || lookup["Other"]}C0">${party}</span>: ${formatNumber(info.parties[party])}</div>`
+        }
     } else {
         panel.style.display = null;
     }

@@ -142,12 +142,25 @@ table {
 .map {
     .panel {
         display: none;
-        border: 1px solid black;
+        border: 1px solid #444;
         position: fixed;
         background-color: white;
         cursor: default;
         font-size: 9px;
-        padding: 5px 2px;
+        padding: 5px 4px;
+
+        .constituency {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 11px;
+        }
+
+        .results {
+            div {
+                margin-bottom: 6px;
+                font-weight: 300;
+            }
+        }
     }
 }
 
