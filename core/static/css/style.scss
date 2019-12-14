@@ -1,53 +1,51 @@
 body {
     font-family: Muli;
-    margin: 0
+    margin: 0;
+    background-color: #fbfbff;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin-left: 40px;
-    margin-right: 40px;
-    margin-top: 40px;
-    align-items: top;
-    justify-content: center;
+button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 2px solid #866bc0;
+    border-radius: 5px;
+    color: darken(#866bc0, 10%);
+    background: none;
+    font-size: 8px;
 }
 
+h1 {
+    text-align: center;
+    font-weight: 400;
 
-
-.data-summary {
-    h2 {
-        text-align: center;
-        font-size: 16px;
+    a {
+        text-decoration: none;
+        color: inherit;
     }
 }
 
-
-.header {
-    display: flex;
-    justify-content: center;
-    padding-left: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-
-    img {
-        height: 80px;
-        width: auto;
-    }
+.subheading {
+    font-weight: 200;
+    font-style: italic;
+    font-size: 12px;
+    text-align: center;
+    margin: 0 10px 20px 10px;
 }
 
 .rules {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-items: center;
-    grid-gap: 15px;
-    font-size: 10px;
+    font-size: 8px;
     padding: 5px;
 
     .rule {
+        text-align: center;
+        margin-bottom: 20px;
+
+        .rule1, .rule2 {
+            margin: 7px 0;
+        }
 
         img {
-            width: 15px;
+            width: 10px;
             margin-right: 5px;
             display: none;
         }
@@ -57,25 +55,28 @@ body {
         }
     
         input, select {
-            margin: 0 5px;
-            font-family: 'Muli', 'sans-serif';
+            font-family: "Muli";
+            font-size: 8px;
+            background: #ffffff00;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            border: none;
+            border-bottom: 2px solid #444444;
+            border-radius: 0px;
+            text-align: center;
+            text-align-last: center;
         }
 
         input {
-            width: 50px;
+            width: 25px;
         }
         
         select {
-            width: 50px;
+            width: 100px;
         }
 
-        button {
-            width: 45px;
-            border: 2px solid #9b51e0;
-            border-radius: 5px;
-            font-family: 'Muli', sans-serif;
-            color: darken(#9b51e0, 10%);
-            background: none;
+        select.region-select {
+            width: 70px;
         }
     }
 }
@@ -84,82 +85,97 @@ body {
     display: none;
     text-align: center;
     margin-top: 10px;
-    font-size: 10px;
+    font-size: 8px;
 }
 
-input {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    border: none;
-    border-bottom: 2px solid black;
-    width: 30px;
+.data-summary {
+    margin-top: 20px;
     text-align: center;
-    font-family: Muli;
-}
 
-select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    border: none;
-    border-bottom: 2px solid black;
-    border-radius: 0px;
-    background: white;
-    font-family: Muli;
-}
+    .summary {
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
 
-table {
-    width: 90%;
-    font-size: 12px;
+    h2 {
+        font-size: 14px;
+    }
 
-    tr {
+    table {
         width: 100%;
-
-        td {
-            text-align: right;
-            width: 50%;
-
-            .data {
-                display: flex;
-
-                .bar {
-                    height: 10px;
-                    width: 0%;
-                    transition-property: "width";
-                    transition: 1s;
+        font-size: 10px;
+        margin-bottom: 30px;
+    
+        tr {
+            width: 100%;
+    
+            td {
+                text-align: right;
+    
+                .data {
+                    display: flex;
+    
+                    .bar {
+                        height: 10px;
+                        width: 0%;
+                        transition-property: "width";
+                        transition: 1s;
+                    }
+    
+                    span {
+                        font-size: 7px;
+                        margin-left: 5px;
+                    }
                 }
-
-                span {
-                    font-size: 8px;
-                    margin-left: 5px;
-                }
+    
+                
             }
 
-            
+            td:nth-child(1) {
+                width: 45%;
+            }
+
+            td:nth-child(2) {
+                width: 55%;
+            }
         }
     }
 }
 
 .map {
+
+    .party-selector {
+        width: 140px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+        font-size: 10px;
+        text-align: center;
+        margin-bottom: 10px;
+        height: 30px;
+    }
+
     .panel {
         display: none;
         border: 1px solid #444;
         position: absolute;
         background-color: white;
         cursor: default;
-        font-size: 9px;
+        font-size: 8px;
         padding: 5px 4px;
         pointer-events: none;
 
         .constituency {
             font-weight: 700;
             margin-bottom: 5px;
-            font-size: 11px;
+            font-size: 10px;
         }
 
         .majority {
             margin: 10px 0;
             font-weight: 500;
-            font-size: 10px;
+            font-size: 9px;
         }
 
         .results {

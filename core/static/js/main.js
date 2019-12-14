@@ -175,11 +175,10 @@ function updateMap(dataObj) {
             var winner = getWinner(parties);
             document.getElementById(conId).style.fill = lookup[winner]; 
         } else {
-            var proportion = party in dataObj[conId].parties ? dataObj[conId].parties[party] / (Object.values(dataObj[conId].parties).reduce((a, b) => a + b) * 0.5): 0;
+            var proportion = party in dataObj[conId].parties ? dataObj[conId].parties[party] / (Object.values(dataObj[conId].parties).reduce((a, b) => a + b) * 0.6): 0;
             var hex = (Math.round(proportion * 256)).toString(16);
             hex = hex.length === 1 ? "0" + hex : hex;
             hex = hex.length === 3 ? "ff" : hex;
-            console.log(hex)
             document.getElementById(conId).style.fill = lookup[party] + hex;
         }
         document.getElementById(conId).style.stroke = "rgb(100, 100, 100)";
@@ -201,7 +200,7 @@ function addRule() {
 }
 
 function removeRule(event) {
-    event.target.parentNode.remove();
+    event.target.parentNode.parentNode.remove();
     var rules = document.getElementsByClassName("rule");
     if (rules.length === 1) {
         for (var rule of rules) {
