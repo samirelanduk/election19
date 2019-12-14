@@ -80,7 +80,8 @@ function updateLink(rules) {
     var link = document.getElementsByClassName("link").item(0).getElementsByTagName("a").item(0);
     var args = [];
     for (var rule of rules) {
-        var arg = `${parties[rule[1]]}-${parties[rule[2]]}=${rule[0] * 100}`;
+        var arg = `${parties[rule[1]]}-${parties[rule[2]]}=${Math.round(rule[0] * 100)}`;
+        console.log(arg);
         if (rule[3] !== "The whole UK") {
             arg = arg.replace("=", `-${regions[rule[3]]}=`)
         }
