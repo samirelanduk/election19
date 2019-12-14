@@ -30,7 +30,7 @@ function summariseData(data) {
         "Plaid Cymru": 0, "Other": 0
     }
     var summary = {
-        "seats": {...parties}, "votes": {...parties}
+        "seats": {...parties}, "votes": {...parties}, "result": "ss"
     }
     for (var conId in data) {
         for (var party in data[conId].parties) {
@@ -46,6 +46,13 @@ function summariseData(data) {
         } else {
             summary.seats.Other += 1;
         }
+    }
+    var winner = getWinner(summary.seats);
+    if (summary.seats[winner] > 325) {
+        var majority = summary.seats[winner] - (650 - summary.seats[winner]);
+        summary.result = `${winner} majority of ${majority}`
+    } else {
+        summary.result = `Hung Parliament (${winner} largest party)`
     }
     return summary;
 }
@@ -156,6 +163,7 @@ function updateBars(newData) {
             bar.style.width = width;
         }
     }
+    document.getElementsByClassName("summary").item(0).innerText = summary.result;
 }
 
 function updateMap(data) {
