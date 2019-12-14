@@ -127,23 +127,31 @@ function getNewData(data, rules) {
     return newData;
 }
 
-function updateBars(data) {
+function updateBars(newData) {
     var seatsTable = document.getElementById("seatsTable");
     var votesTable = document.getElementById("votesTable");
-    var summary = summariseData(data);
+    var oldSummary = summariseData(data);
+    var summary = summariseData(newData);
     const allVotes = Object.values(summary.votes).reduce((a,b) => a + b, 0);
     for (var table of [seatsTable, votesTable]) {
         for (var row of table.rows) {
             var party = row.cells[0].innerText;
             var bar = row.cells[1].getElementsByClassName("bar").item(0);
             bar.style.backgroundColor = lookup[party];
+            var info = table.id === "seatsTable" ? summary.seats: summary.votes;
+            var oldInfo = table.id === "seatsTable" ? oldSummary.seats: oldSummary.votes;
+            
+            var diff = info[party] - oldInfo[party];
+            var text = info[party].toString();
+            
             if (table.id === "seatsTable") {
-                row.getElementsByTagName("span").item(0).innerText = summary.seats[party];
+                text += diff ? ` (${diff > 0 ? "+" : ""}${diff})` : "";
                 width = (summary.seats[party] / 6.5).toString().slice(0, 4) + "%";
             } else {
-                row.getElementsByTagName("span").item(0).innerText = summary.votes[party];
+               
                 width = (summary.votes[party] / allVotes * 100).toString().slice(0, 4) + "%";
             }
+            row.getElementsByTagName("span").item(0).innerText = formatNumber(text);
             
             bar.style.width = width;
         }
