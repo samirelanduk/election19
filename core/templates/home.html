@@ -10,164 +10,172 @@
 </head>
 <body>
 
-<h1><a href="/">Election '19</a></h1>
 
-<p class="subheading">The 'what ifs' of the 2019 UK General Election.</p>
 
-<div class="rules">
-    {% for rule in rules %}
-    <div class="rule">
-        <div class="rule1">
-            <img src="/static/images/x.png" onclick="removeRule(event);"{% if rules|length > 1%} style="display: inline"{% endif %}>
-            If <input value="{{ rule.0 }}" type="number" min="0" max="100" oninput="applyRules();" class="pc">% of
-            <select onchange="applyRules();">
-                <option></option>
-                <option{% if rule.1 == 'Conservative'%} selected{% endif %}>Conservative</option>
-                <option{% if rule.1 == 'Labour'%} selected{% endif %}>Labour</option>
-                <option{% if rule.1 == 'Liberal Democrat'%} selected{% endif %}>Liberal Democrat</option>
-                <option{% if rule.1 == 'Scottish National Party'%} selected{% endif %}>Scottish National Party</option>
-                <option{% if rule.1 == 'Green'%} selected{% endif %}>Green</option>
-                <option{% if rule.1 == 'The Brexit Party'%} selected{% endif %}>The Brexit Party</option>
-                <option{% if rule.1 == 'Plaid Cymru'%} selected{% endif %}>Plaid Cymru</option>
-                <option{% if rule.1 == 'Democratic Unionist Party'%} selected{% endif %}>Democratic Unionist Party</option>
-                <option{% if rule.1 == 'Sinn Féin'%} selected{% endif %}>Sinn Féin</option>
-            </select> voters in
-            <select class="region-select" onchange="applyRules();" value="{{ rule.2 }}">
-                <option{% if rule.2 == 'The whole UK'%} selected{% endif %}>The whole UK</option>
-                <option{% if rule.2 == 'England'%} selected{% endif %}>England</option>
-                <option{% if rule.2 == 'Scotland'%} selected{% endif %}>Scotland</option>
-                <option{% if rule.2 == 'Wales'%} selected{% endif %}>Wales</option>
-                <option{% if rule.2 == 'Northern Ireland'%} selected{% endif %}>Northern Ireland</option>
-            </select>
-        </div><div class="rule2">voted for
-            <select onchange="applyRules();">
-                <option></option>
-                <option{% if rule.3 == 'Conservative'%} selected{% endif %}>Conservative</option>
-                <option{% if rule.3 == 'Labour'%} selected{% endif %}>Labour</option>
-                <option{% if rule.3 == 'Liberal Democrat'%} selected{% endif %}>Liberal Democrat</option>
-                <option{% if rule.3 == 'Scottish National Party'%} selected{% endif %}>Scottish National Party</option>
-                <option{% if rule.3 == 'Green'%} selected{% endif %}>Green</option>
-                <option{% if rule.3 == 'The Brexit Party'%} selected{% endif %}>The Brexit Party</option>
-                <option{% if rule.3 == 'Plaid Cymru'%} selected{% endif %}>Plaid Cymru</option>
-                <option{% if rule.3 == 'Democratic Unionist Party'%} selected{% endif %}>Democratic Unionist Party</option>
-                <option{% if rule.3 == 'Sinn Féin'%} selected{% endif %}>Sinn Féin</option>
-            </select>
-            <button onclick="addRule();">and...</button>
+
+
+
+<div class="grid">
+
+    <div class="interface">
+        <h1><a href="/">Election '19</a></h1>
+
+        <p class="subheading">The 'what ifs' of the 2019 UK General Election.</p>
+
+        <div class="rules">
+            {% for rule in rules %}
+            <div class="rule">
+                <div class="rule1">
+                    <img src="/static/images/x.png" onclick="removeRule(event);"{% if rules|length > 1%} style="display: inline"{% endif %}>
+                    If <input value="{{ rule.0 }}" type="number" min="0" max="100" oninput="applyRules();" class="pc">% of
+                    <select onchange="applyRules();">
+                        <option></option>
+                        <option{% if rule.1 == 'Conservative'%} selected{% endif %}>Conservative</option>
+                        <option{% if rule.1 == 'Labour'%} selected{% endif %}>Labour</option>
+                        <option{% if rule.1 == 'Liberal Democrat'%} selected{% endif %}>Liberal Democrat</option>
+                        <option{% if rule.1 == 'Scottish National Party'%} selected{% endif %}>Scottish National Party</option>
+                        <option{% if rule.1 == 'Green'%} selected{% endif %}>Green</option>
+                        <option{% if rule.1 == 'The Brexit Party'%} selected{% endif %}>The Brexit Party</option>
+                        <option{% if rule.1 == 'Plaid Cymru'%} selected{% endif %}>Plaid Cymru</option>
+                        <option{% if rule.1 == 'Democratic Unionist Party'%} selected{% endif %}>Democratic Unionist Party</option>
+                        <option{% if rule.1 == 'Sinn Féin'%} selected{% endif %}>Sinn Féin</option>
+                    </select> voters in
+                    <select class="region-select" onchange="applyRules();" value="{{ rule.2 }}">
+                        <option{% if rule.2 == 'The whole UK'%} selected{% endif %}>The whole UK</option>
+                        <option{% if rule.2 == 'England'%} selected{% endif %}>England</option>
+                        <option{% if rule.2 == 'Scotland'%} selected{% endif %}>Scotland</option>
+                        <option{% if rule.2 == 'Wales'%} selected{% endif %}>Wales</option>
+                        <option{% if rule.2 == 'Northern Ireland'%} selected{% endif %}>Northern Ireland</option>
+                    </select>
+                </div><div class="rule2">voted for
+                    <select onchange="applyRules();">
+                        <option></option>
+                        <option{% if rule.3 == 'Conservative'%} selected{% endif %}>Conservative</option>
+                        <option{% if rule.3 == 'Labour'%} selected{% endif %}>Labour</option>
+                        <option{% if rule.3 == 'Liberal Democrat'%} selected{% endif %}>Liberal Democrat</option>
+                        <option{% if rule.3 == 'Scottish National Party'%} selected{% endif %}>Scottish National Party</option>
+                        <option{% if rule.3 == 'Green'%} selected{% endif %}>Green</option>
+                        <option{% if rule.3 == 'The Brexit Party'%} selected{% endif %}>The Brexit Party</option>
+                        <option{% if rule.3 == 'Plaid Cymru'%} selected{% endif %}>Plaid Cymru</option>
+                        <option{% if rule.3 == 'Democratic Unionist Party'%} selected{% endif %}>Democratic Unionist Party</option>
+                        <option{% if rule.3 == 'Sinn Féin'%} selected{% endif %}>Sinn Féin</option>
+                    </select>
+                    <button onclick="addRule();">and...</button>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-    </div>
-    {% endfor %}
-</div>
-
-<div class="link">
-    <span>Link to this combination:</span>
-    <a href="{{ root }}" data-root="{{ root }}">{{ root }}</a>
-</div>
-
-
-<div class="data-summary">
-    <div class="summary"></div>
-    <h2>Seat Share</h2>
-    
-    <table id="seatsTable">
-        <tr>
-            <td>Conservative</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Labour</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Scottish National Party</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Liberal Democrat</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Democratic Unionist Party</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Sinn Féin</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Plaid Cymru</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Green</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>The Brexit Party</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Other</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-    </table>
-
-    <h2>Vote Share</h2>
-    <table id="votesTable">
+        <div class="link">
+            <span>Link to this combination:</span>
+            <a href="{{ root }}" data-root="{{ root }}">{{ root }}</a>
+        </div>
+        <div class="data-summary">
+        <div class="summary"></div>
+        <h2>Seat Share</h2>
         
-        <tr>
-            <td>Conservative</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Labour</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Scottish National Party</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Liberal Democrat</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Democratic Unionist Party</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Sinn Féin</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Plaid Cymru</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Green</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>The Brexit Party</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-        <tr>
-            <td>Other</td>
-            <td><div class="data"><div class="bar"></div><span></span></div>
-        </tr>
-    </table>
-</div>
+        <table id="seatsTable">
+            <tr>
+                <td>Conservative</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+            <tr>
+                <td>Labour</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+            <tr>
+                <td>Scottish National Party</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+            <tr>
+                <td>Liberal Democrat</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+            <tr>
+                <td>Democratic Unionist Party</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+            <tr>
+                <td>Sinn Féin</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+            <tr>
+                <td>Plaid Cymru</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+            <tr>
+                <td>Green</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+            <tr>
+                <td>The Brexit Party</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+            <tr>
+                <td>Other</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+        </table>
 
-<div class="map">
-    <div class="party-selector">
-        <button onclick="changeParty(-1);"><</button><span>All Parties</span><button onclick="changeParty(1);">></button>
+        <h2>Vote Share</h2>
+        <table id="votesTable">
+            
+            <tr>
+                <td>Conservative</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+            <tr>
+                <td>Labour</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+            <tr>
+                <td>Scottish National Party</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+            <tr>
+                <td>Liberal Democrat</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+            <tr>
+                <td>Democratic Unionist Party</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+            <tr>
+                <td>Sinn Féin</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+            <tr>
+                <td>Plaid Cymru</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+            <tr>
+                <td>Green</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+            <tr>
+                <td>The Brexit Party</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+            <tr>
+                <td>Other</td>
+                <td><div class="data"><div class="bar"></div><span></span></div>
+            </tr>
+        </table>
     </div>
+    </div>
+    
 
-    {% include "map.svg" %}
+    <div class="map">
+        <div class="party-selector">
+            <button onclick="changeParty(-1);"><</button><span>All Parties</span><button onclick="changeParty(1);">></button>
+        </div>
 
-    <div class="panel">
-        <div class="constituency"></div>
-        <div class="majority"></div>
-        <div class="results"></div>
+        {% include "map.svg" %}
+
+        <div class="panel">
+            <div class="constituency"></div>
+            <div class="majority"></div>
+            <div class="results"></div>
+        </div>
     </div>
 </div>
 
