@@ -18,56 +18,56 @@
 <div class="grid">
 
     <div class="interface">
-        <h1><a href="/">Election '19</a></h1>
-
-        <p class="subheading">The 'what ifs' of the 2019 UK General Election.</p>
-
-        <div class="rules">
-            {% for rule in rules %}
-            <div class="rule">
-                <div class="rule1">
-                    <img src="/static/images/x.png" onclick="removeRule(event);"{% if rules|length > 1%} style="display: inline"{% endif %}>
-                    If <input value="{{ rule.0 }}" type="number" min="0" max="100" oninput="applyRules();" class="pc">% of
-                    <select onchange="applyRules();">
-                        <option></option>
-                        <option{% if rule.1 == 'Conservative'%} selected{% endif %}>Conservative</option>
-                        <option{% if rule.1 == 'Labour'%} selected{% endif %}>Labour</option>
-                        <option{% if rule.1 == 'Liberal Democrat'%} selected{% endif %}>Liberal Democrat</option>
-                        <option{% if rule.1 == 'Scottish National Party'%} selected{% endif %}>Scottish National Party</option>
-                        <option{% if rule.1 == 'Green'%} selected{% endif %}>Green</option>
-                        <option{% if rule.1 == 'The Brexit Party'%} selected{% endif %}>The Brexit Party</option>
-                        <option{% if rule.1 == 'Plaid Cymru'%} selected{% endif %}>Plaid Cymru</option>
-                        <option{% if rule.1 == 'Democratic Unionist Party'%} selected{% endif %}>Democratic Unionist Party</option>
-                        <option{% if rule.1 == 'Sinn Féin'%} selected{% endif %}>Sinn Féin</option>
-                    </select> voters in
-                    <select class="region-select" onchange="applyRules();" value="{{ rule.2 }}">
-                        <option{% if rule.2 == 'The whole UK'%} selected{% endif %}>The whole UK</option>
-                        <option{% if rule.2 == 'England'%} selected{% endif %}>England</option>
-                        <option{% if rule.2 == 'Scotland'%} selected{% endif %}>Scotland</option>
-                        <option{% if rule.2 == 'Wales'%} selected{% endif %}>Wales</option>
-                        <option{% if rule.2 == 'Northern Ireland'%} selected{% endif %}>Northern Ireland</option>
-                    </select>
-                </div><div class="rule2">voted for
-                    <select onchange="applyRules();">
-                        <option></option>
-                        <option{% if rule.3 == 'Conservative'%} selected{% endif %}>Conservative</option>
-                        <option{% if rule.3 == 'Labour'%} selected{% endif %}>Labour</option>
-                        <option{% if rule.3 == 'Liberal Democrat'%} selected{% endif %}>Liberal Democrat</option>
-                        <option{% if rule.3 == 'Scottish National Party'%} selected{% endif %}>Scottish National Party</option>
-                        <option{% if rule.3 == 'Green'%} selected{% endif %}>Green</option>
-                        <option{% if rule.3 == 'The Brexit Party'%} selected{% endif %}>The Brexit Party</option>
-                        <option{% if rule.3 == 'Plaid Cymru'%} selected{% endif %}>Plaid Cymru</option>
-                        <option{% if rule.3 == 'Democratic Unionist Party'%} selected{% endif %}>Democratic Unionist Party</option>
-                        <option{% if rule.3 == 'Sinn Féin'%} selected{% endif %}>Sinn Féin</option>
-                    </select>
-                    <button onclick="addRule();">and...</button>
+        <div class="inputs">
+            <h1><a href="/">Election '19</a></h1>
+            <p class="subheading">The 'what ifs' of the 2019 UK General Election.</p>
+            <div class="rules">
+                {% for rule in rules %}
+                <div class="rule">
+                    <div class="rule1">
+                        <img src="/static/images/x.png" onclick="removeRule(event);"{% if rules|length > 1%} style="display: inline"{% endif %}>
+                        If <input value="{{ rule.0 }}" type="number" min="0" max="100" oninput="applyRules();" class="pc">% of
+                        <select onchange="applyRules();">
+                            <option></option>
+                            <option{% if rule.1 == 'Conservative'%} selected{% endif %}>Conservative</option>
+                            <option{% if rule.1 == 'Labour'%} selected{% endif %}>Labour</option>
+                            <option{% if rule.1 == 'Liberal Democrat'%} selected{% endif %}>Liberal Democrat</option>
+                            <option{% if rule.1 == 'Scottish National Party'%} selected{% endif %}>Scottish National Party</option>
+                            <option{% if rule.1 == 'Green'%} selected{% endif %}>Green</option>
+                            <option{% if rule.1 == 'The Brexit Party'%} selected{% endif %}>The Brexit Party</option>
+                            <option{% if rule.1 == 'Plaid Cymru'%} selected{% endif %}>Plaid Cymru</option>
+                            <option{% if rule.1 == 'Democratic Unionist Party'%} selected{% endif %}>Democratic Unionist Party</option>
+                            <option{% if rule.1 == 'Sinn Féin'%} selected{% endif %}>Sinn Féin</option>
+                        </select> voters in
+                        <select class="region-select" onchange="applyRules();" value="{{ rule.2 }}">
+                            <option{% if rule.2 == 'The whole UK'%} selected{% endif %}>The whole UK</option>
+                            <option{% if rule.2 == 'England'%} selected{% endif %}>England</option>
+                            <option{% if rule.2 == 'Scotland'%} selected{% endif %}>Scotland</option>
+                            <option{% if rule.2 == 'Wales'%} selected{% endif %}>Wales</option>
+                            <option{% if rule.2 == 'Northern Ireland'%} selected{% endif %}>Northern Ireland</option>
+                        </select>
+                    </div><div class="rule2">voted for
+                        <select onchange="applyRules();">
+                            <option></option>
+                            <option{% if rule.3 == 'Conservative'%} selected{% endif %}>Conservative</option>
+                            <option{% if rule.3 == 'Labour'%} selected{% endif %}>Labour</option>
+                            <option{% if rule.3 == 'Liberal Democrat'%} selected{% endif %}>Liberal Democrat</option>
+                            <option{% if rule.3 == 'Scottish National Party'%} selected{% endif %}>Scottish National Party</option>
+                            <option{% if rule.3 == 'Green'%} selected{% endif %}>Green</option>
+                            <option{% if rule.3 == 'The Brexit Party'%} selected{% endif %}>The Brexit Party</option>
+                            <option{% if rule.3 == 'Plaid Cymru'%} selected{% endif %}>Plaid Cymru</option>
+                            <option{% if rule.3 == 'Democratic Unionist Party'%} selected{% endif %}>Democratic Unionist Party</option>
+                            <option{% if rule.3 == 'Sinn Féin'%} selected{% endif %}>Sinn Féin</option>
+                        </select>
+                        <button onclick="addRule();">and...</button>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
-        <div class="link">
-            <span>Link to this combination:</span>
-            <a href="{{ root }}" data-root="{{ root }}">{{ root }}</a>
+            <div class="link">
+                <span>Link to this combination:</span>
+                <a href="{{ root }}" data-root="{{ root }}">{{ root }}</a>
+            </div>
         </div>
         <div class="data-summary">
             <div class="summary"></div>

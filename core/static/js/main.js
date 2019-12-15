@@ -164,8 +164,7 @@ function updateBars(newData) {
         }
     }
     document.getElementsByClassName("summary").item(0).innerText = summary.result;
-    console.log(getWinner(summary.seats))
-    document.getElementsByClassName("data-summary").item(0).style.backgroundColor = lookup[getWinner(summary.seats)] + "08";
+    document.getElementsByClassName("interface").item(0).style.backgroundColor = lookup[getWinner(summary.seats)] + "08";
 }
 
 function updateMap(dataObj) {

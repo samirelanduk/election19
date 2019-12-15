@@ -15,7 +15,7 @@ body {
 button {
     -webkit-appearance: none;
     -moz-appearance: none;
-    border: 2px solid #866bc0;
+    border: 1px solid #866bc0;
     border-radius: 5px;
     color: darken(#866bc0, 10%);
     background: none;
@@ -27,82 +27,96 @@ button {
     display: grid;
 
     .interface {
-        h1 {
-            text-align: center;
-            font-weight: 400;
-        
-            a {
-                text-decoration: none;
-                color: inherit;
-            }
-        }
-        
-        .subheading {
-            font-weight: 200;
-            font-style: italic;
-            font-size: 12px;
-            text-align: center;
-            margin: 0 10px 20px 10px;
-        }
-        
-        .rules {
-            font-size: 8px;
-            padding: 5px;
-            font-weight: 300;
-        
-            .rule {
+        .inputs {
+            background: $background;
+
+            h1 {
                 text-align: center;
-                margin-bottom: 20px;
-        
-                .rule1, .rule2 {
-                    margin: 7px 0;
-                }
-        
-                img {
-                    width: 10px;
-                    margin-right: 5px;
-                    display: none;
-                }
+                font-weight: 400;
+                margin: 0;
+                padding: 10px 0;
+                font-size: 20px;
             
-                button {
-                    margin-left: 5px;
-                }
-            
-                input, select {
-                    font-family: "Muli";
-                    font-size: inherit;
+                a {
+                    text-decoration: none;
                     color: inherit;
-                    font-weight: inherit;
-                    background: #ffffff00;
-                    -webkit-appearance: none;
-                    -moz-appearance: none;
-                    border: none;
-                    border-bottom: 2px solid #555;
-                    border-radius: 0px;
-                    text-align: center;
-                    text-align-last: center;
-                }
-        
-                input {
-                    width: 25px;
-                }
-                
-                select {
-                    width: 100px;
-                }
-        
-                select.region-select {
-                    width: 70px;
                 }
             }
+            
+            .subheading {
+                font-weight: 200;
+                font-style: italic;
+                font-size: 10px;
+                text-align: center;
+                margin: 0 10px 20px 10px;
+            }
+            
+            .rules {
+                font-size: 8px;
+                padding: 5px;
+                font-weight: 300;
+            
+                .rule {
+                    text-align: center;
+                    margin-bottom: 20px;
+            
+                    .rule1, .rule2 {
+                        margin: 7px 0;
+                        display: inline-block;
+                    }
+            
+                    img {
+                        width: 10px;
+                        margin-right: 5px;
+                        display: none;
+                        cursor: pointer;
+                    }
+                
+                    button {
+                        margin-left: 5px;
+                    }
+                
+                    input, select {
+                        font-family: "Muli";
+                        font-size: inherit;
+                        color: inherit;
+                        font-weight: inherit;
+                        background: #ffffff00;
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                        border: none;
+                        border-bottom: 1px solid #555555E0;
+                        border-radius: 0px;
+                        text-align: center;
+                        text-align-last: center;
+                    }
+            
+                    input {
+                        width: 35px;
+                    }
+                    
+                    select {
+                        width: 100px;
+                    }
+            
+                    select.region-select {
+                        width: 70px;
+                    }
+                }
+            }
+
+            .link {
+                display: none;
+                text-align: center;
+                padding: 15px 0 20px 0;
+                font-size: 8px;
+                font-weight: 200;
+            }
+            
+            
+
         }
         
-        .link {
-            display: none;
-            text-align: center;
-            margin-top: 10px;
-            font-size: 8px;
-        }
 
         .data-summary {
             text-align: center;
@@ -231,33 +245,30 @@ button {
 @media (min-width: 450px) {
     .grid {
         .interface {
-            .subheading {
-                font-size: 14px;
-                margin: 0 20px 30px 20px;
-            }
 
-            .rules {
-                font-size: 10px;
-                
-                .rule {
-                    margin-bottom: 30px;
+            .inputs {
+                h1 {
+                    font-size: 28px;
+                    padding: 25px 0;
+                }
 
-                    select {
-                        width: 120px;
-                    }
+                .subheading {
+                    font-size: 12px;
+                    margin: 0 20px 20px 20px;
+                }
+
+                .link {
+                    font-size: 10px;
                 }
             }
             
-            .link {
-                font-size: 10px;
-            }
+            
 
             .data-summary {
-                margin-top: 30px;
             
                 .summary {
                     font-size: 20px;
-                    padding: 25px 0;
+                    padding: 20px 0;
                 }
 
                 .tables {
@@ -301,6 +312,22 @@ button {
 @media (min-width: 600px) {
     .grid {
         .interface {
+            .inputs {
+                .rules {
+                    font-size: 10px;
+
+                    .rule {
+                        select {
+                            width: 120px;
+                        }
+
+                        select.region-select {
+                            width: 85px;
+                        }
+                    }
+                }
+                
+            }
             .data-summary {
                 .summary {
                     font-size: 24px;
