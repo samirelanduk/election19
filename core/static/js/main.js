@@ -12,6 +12,11 @@ var lookup = {
 }
 
 function getWinner(parties) {
+    /**
+     * Takes a mapping of strings to numbers, and returns the string that maps
+     * to the highest number.
+     */
+
     return Object.keys(parties).reduce(
         function(a, b){ return parties[a] > parties[b] ? a : b }
     )
@@ -19,10 +24,21 @@ function getWinner(parties) {
 
 
 function formatNumber(num) {
+    /**
+     * Adds commas to a number.
+     */
+
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 }
 
+
 function summariseData(dataObj) {
+    /**
+     * Takes a data object representing election data, and returns an object
+     * which summarises the number of votes, seats, and a string summary of the
+     * outcome.
+     */
+
     var parties = {
         "Labour": 0, "Conservative": 0, "Liberal Democrat": 0,
         "Scottish National Party": 0, "The Brexit Party": 0, "Green": 0,
@@ -57,7 +73,12 @@ function summariseData(dataObj) {
     return summary;
 }
 
+
 function applyRules() {
+    /**
+     * Applies whatever rules are onscreen to the map and the charts.
+     */
+
     var ruleElements = document.getElementsByClassName("rule");
     var rules = [];
     for (var rule of ruleElements) {
@@ -82,6 +103,10 @@ function applyRules() {
 }
 
 function updateLink(rules) {
+    /**
+     * Updates the link on screen for the current rules on display.
+     */
+
     parties = {
         "Conservative": "con", "Labour": "lab", "Liberal Democrat": "ld",
         "Green": "green", "Scottish National Party": "snp",
@@ -112,14 +137,17 @@ function updateLink(rules) {
     
 }
 
+
 function getNewData(data, rules) {
+    /**
+     * Creates a new election data object from an existsing one and one or more
+     * rules.
+     */
+
     newData = JSON.parse(JSON.stringify(data));
-
     for (conId in newData) {
-
         var parties = newData[conId].parties;
         var oldParties = {...parties}
-
         for (var rule of rules) {
             if (rule[1] in parties && rule[2] in parties && (rule[3] === "The whole UK" || rule[3][0] === conId[0])) {
                 voters = parseInt(oldParties[rule[1]] * rule[0]);
@@ -134,7 +162,12 @@ function getNewData(data, rules) {
     return newData;
 }
 
+
 function updateBars(newData) {
+    /**
+     * Updates the chart bar widths for the current election data.
+     */
+
     var seatsTable = document.getElementById("seatsTable");
     var votesTable = document.getElementById("votesTable");
     var oldSummary = summariseData(data);
@@ -147,10 +180,8 @@ function updateBars(newData) {
             bar.style.backgroundColor = lookup[party];
             var info = table.id === "seatsTable" ? summary.seats: summary.votes;
             var oldInfo = table.id === "seatsTable" ? oldSummary.seats: oldSummary.votes;
-            
             var diff = info[party] - oldInfo[party];
             var text = info[party].toString();
-            
             if (table.id === "seatsTable") {
                 text += diff ? ` (${diff > 0 ? "+" : ""}${diff})` : "";
                 width = (0.8 * summary.seats[party] / 6.5).toString().slice(0, 4) + "%";
@@ -159,7 +190,6 @@ function updateBars(newData) {
                 width = (0.8 * summary.votes[party] / allVotes * 100).toString().slice(0, 4) + "%";
             }
             row.getElementsByTagName("span").item(0).innerText = formatNumber(text);
-            
             bar.style.width = width;
         }
     }
@@ -167,7 +197,13 @@ function updateBars(newData) {
     document.getElementsByClassName("interface").item(0).style.backgroundColor = lookup[getWinner(summary.seats)] + "08";
 }
 
+
 function updateMap(dataObj) {
+    /**
+     * Updates the map colors for the current election data. It will check
+     * which party is selected in the toggle to get the correct behavior.
+     */
+
     var selector = document.getElementsByClassName("party-selector").item(0);
     var party = selector.getElementsByTagName("span").item(0).innerText;
     for (conId in dataObj) {
@@ -176,7 +212,9 @@ function updateMap(dataObj) {
             var winner = getWinner(parties);
             document.getElementById(conId).style.fill = lookup[winner]; 
         } else {
-            var proportion = party in dataObj[conId].parties ? dataObj[conId].parties[party] / (Object.values(dataObj[conId].parties).reduce((a, b) => a + b) * 0.6): 0;
+            var proportion = party in dataObj[conId].parties ? dataObj[conId].parties[party] / (
+                Object.values(dataObj[conId].parties).reduce((a, b) => a + b) * 0.6
+            ): 0;
             var hex = (Math.round(proportion * 256)).toString(16);
             hex = hex.length === 1 ? "0" + hex : hex;
             hex = hex.length === 3 ? "ff" : hex;
@@ -186,7 +224,11 @@ function updateMap(dataObj) {
     } 
 }
 
+
 function addRule() {
+    /**
+     * Adds a rule widget to the screen.
+     */
     var rule = document.getElementsByClassName("rule").item(0);
     var rules = document.getElementsByClassName("rules").item(0);
     for (var rule of rules.getElementsByClassName("rule")) {
@@ -200,7 +242,12 @@ function addRule() {
     rules.appendChild(newRule);
 }
 
+
 function removeRule(event) {
+    /** 
+     * Removes a rule widget from the screen.
+     */
+
     event.target.parentNode.parentNode.remove();
     var rules = document.getElementsByClassName("rule");
     if (rules.length === 1) {
@@ -213,6 +260,10 @@ function removeRule(event) {
 
 
 function changeParty(delta) {
+    /**
+     * Changes the party displayed in the toggle.
+     */
+
     var parties = [
         "All Parties", "Conservative", "Labour", "Liberal Democrat",
         "Scottish National Party", "Green", "The Brexit Party",
@@ -232,12 +283,11 @@ function changeParty(delta) {
     updateMap(newData);
 }
 
+
 var svg = document.getElementsByTagName("svg").item(0);
 svg.addEventListener("mouseover", (event) => {
     var panel = document.getElementsByClassName("panel").item(0);
     if (event.target.tagName.toLowerCase() === "path" && event.target.id.length) {
-        
-        
         var info = newData[event.target.id];
         panel.getElementsByClassName("constituency").item(0).innerText = info["name"];
         var results = panel.getElementsByClassName("results").item(0);
