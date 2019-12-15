@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-$background: #fbfbff;
+$background: #fdfdff;
 $border: #dddbef;
 
 body {
@@ -105,59 +105,67 @@ button {
         }
 
         .data-summary {
-            margin-top: 20px;
             text-align: center;
+            border-top: 1px solid $border;
         
             .summary {
-                font-size: 12px;
-                margin-bottom: 20px;
+                font-size: 16px;
                 font-weight: 800;
+                padding: 20px 0;
             }
-        
-            h2 {
-                font-size: 14px;
-                font-weight: 600;
-            }
-        
-            table {
-                width: 100%;
-                font-size: 10px;
+
+            .tables {
+                display: grid;
+                grid-gap: 10px;
                 margin-bottom: 30px;
-            
-                tr {
-                    width: 100%;
-            
-                    td {
-                        text-align: right;
-            
-                        .data {
-                            display: flex;
-            
-                            .bar {
-                                height: 10px;
-                                width: 0%;
-                                transition-property: "width";
-                                transition: 1s;
+
+                .table {
+                    padding-left: 10%;
+
+                    h2 {
+                        font-size: 14px;
+                        font-weight: 600;
+                    }
+
+                    table {
+                        width: 100%;
+                        font-size: 10px;
+                    
+                        tr {
+                            width: 100%;
+                    
+                            td {
+                                text-align: right;
+                                white-space: nowrap;
+                    
+                                .data {
+                                    display: flex;
+                    
+                                    .bar {
+                                        height: 10px;
+                                        width: 0%;
+                                        transition-property: "width";
+                                        transition: 1s;
+                                    }
+                    
+                                    span {
+                                        font-size: 7px;
+                                        margin-left: 5px;
+                                    }
+                                }
+                    
+                                
                             }
-            
-                            span {
-                                font-size: 7px;
-                                margin-left: 5px;
+    
+                            td:nth-child(2) {
+                                width: 100%;
                             }
                         }
-            
-                        
-                    }
-        
-                    td:nth-child(1) {
-                        width: 45%;
-                    }
-        
-                    td:nth-child(2) {
-                        width: 55%;
                     }
                 }
+
             }
+         
         }
 
     }
@@ -248,41 +256,35 @@ button {
                 margin-top: 30px;
             
                 .summary {
-                    font-size: 16px;
-                    margin-bottom: 25px;
+                    font-size: 20px;
+                    padding: 25px 0;
                 }
-            
-                h2 {
-                    font-size: 16px;
-                }
-            
-                table {
-                    font-size: 12px;
-                    margin-bottom: 40px;
-                
-                    tr {
-                
-                        td {
-                
-                            .data {
-                
-                                span {
-                                    font-size: 9px;
+
+                .tables {
+                    .table {
+                        h2 {
+                            font-size: 16px;
+                        }
+
+                        table {
+                            font-size: 12px;
+                        
+                            tr {
+                        
+                                td {
+                        
+                                    .data {
+                        
+                                        span {
+                                            font-size: 9px;
+                                        }
+                                    }
                                 }
                             }
-                
-                            
-                        }
-            
-                        td:nth-child(1) {
-                            width: 35%;
-                        }
-            
-                        td:nth-child(2) {
-                            width: 65%;
                         }
                     }
                 }
+                
             }
         }
 
@@ -298,6 +300,27 @@ button {
 
 @media (min-width: 600px) {
     .grid {
+        .interface {
+            .data-summary {
+                .summary {
+                    font-size: 24px;
+                }
+
+                .tables {
+                    grid-template-columns: 1fr 1fr;
+                    
+                    .table {
+                        h2 {
+                            font-size: 14px;
+                        }
+
+                        table {
+                            font-size: 10px;
+                        }
+                    }
+                }
+            }
+        }
         .map {
             .party-selector {
                 font-size: 16px;
@@ -316,6 +339,18 @@ button {
         .interface {
             height: 100vh;
             overflow-y: scroll;
+
+            .data-summary {
+                .summary {
+                    font-size: 18px;
+                }
+
+                .tables {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            
         }
 
         .map {
@@ -337,6 +372,22 @@ button {
             svg {
                 max-height: calc(100% - 50px);
                 margin-top: 50px;
+            }
+        }
+    }
+}
+
+@media (min-width: 1300px) {
+    .grid {
+        .interface {
+            .data-summary {
+                .summary {
+                    font-size: 24px;
+                }
+
+                .tables {
+                    grid-template-columns: 1fr 1fr;
+                }
             }
         }
     }
