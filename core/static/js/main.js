@@ -236,9 +236,8 @@ var svg = document.getElementsByTagName("svg").item(0);
 svg.addEventListener("mouseover", (event) => {
     var panel = document.getElementsByClassName("panel").item(0);
     if (event.target.tagName.toLowerCase() === "path" && event.target.id.length) {
-        panel.style.display = "block";
-        panel.style.left = event.pageX + "px";
-        panel.style.top = event.pageY + "px";
+        
+        
         var info = newData[event.target.id];
         panel.getElementsByClassName("constituency").item(0).innerText = info["name"];
         var results = panel.getElementsByClassName("results").item(0);
@@ -250,6 +249,28 @@ svg.addEventListener("mouseover", (event) => {
             var diff = info.parties[party] - data[event.target.id].parties[party];
             diff = diff ? `(${diff > 0 ? "+" : ""}${formatNumber(diff)})` : "";
             results.innerHTML += `<div><span style="border-bottom: 1.5px solid ${lookup[party] || lookup["Other"]}C0">${party}</span>: ${formatNumber(info.parties[party])} ${diff}</div>`
+        }
+        panel.style.display = "block";
+        var D = document;
+        h = Math.max(
+            D.body.scrollHeight, D.documentElement.scrollHeight,
+            D.body.offsetHeight, D.documentElement.offsetHeight,
+            D.body.clientHeight, D.documentElement.clientHeight
+        );
+        w = Math.max(
+            D.body.scrollWidth, D.documentElement.scrollWidth,
+            D.body.offsetWidth, D.documentElement.offsetWidth,
+            D.body.clientWidth, D.documentElement.clientWidth
+        );
+        if (h - event.pageY <= panel.clientHeight) {
+            panel.style.top = (event.pageY - panel.clientHeight) + "px";
+        } else {
+            panel.style.top = event.pageY + "px";
+        }
+        if (w - event.pageX <= panel.clientWidth) {
+            panel.style.left = (event.pageX - panel.clientWidth) + "px";
+        } else {
+            panel.style.left = event.pageX + "px";
         }
     } else {
         panel.style.display = null;
