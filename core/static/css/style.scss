@@ -15,10 +15,10 @@ body {
 button {
     -webkit-appearance: none;
     -moz-appearance: none;
-    border: 1px solid #866bc0;
+    border: 1px solid darken(#866bc0, 10%);;
     border-radius: 5px;
-    color: darken(#866bc0, 10%);
-    background: none;
+    background: #866bc0;
+    color: white;
     font-size: 8px;
     cursor: pointer;
 }
@@ -202,6 +202,18 @@ button {
             border: 1px solid $border;
             border-top-width: 0;
             padding: 0 15px;
+
+            button {
+                height: 35%;
+
+                img {
+                    height: 100%;
+                    padding: 2px 0;
+                    filter: invert(1) grayscale(1);
+                }
+            }
+
+            
         }
 
         svg {
