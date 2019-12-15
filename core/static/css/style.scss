@@ -23,6 +23,10 @@ button {
     cursor: pointer;
 }
 
+a, a:visited {
+    color: blue;
+}
+
 .grid {
     display: grid;
 
@@ -112,8 +116,6 @@ button {
                 font-size: 8px;
                 font-weight: 200;
             }
-            
-            
 
         }
         
@@ -178,6 +180,25 @@ button {
                     }
                 }
 
+            }
+
+            .attribution {
+                display: none;
+                font-size: 12px;
+                font-weight: 200;
+                width: fit-content;
+                width: -moz-fit-content;
+                margin: 40px auto;
+
+                .goodwright {
+                    color: white;
+                    background: #866bc0;
+                    text-decoration: none;
+                    font-weight: 400;
+                    padding: 2px 3px;
+                    border-radius: 4px;
+                    margin: 0 3px;
+                }
             }
          
         }
@@ -386,6 +407,10 @@ button {
 
                 .tables {
                     grid-template-columns: 1fr;
+                }
+
+                .attribution {
+                    display: block;
                 }
             }
 
