@@ -153,10 +153,10 @@ function updateBars(newData) {
             
             if (table.id === "seatsTable") {
                 text += diff ? ` (${diff > 0 ? "+" : ""}${diff})` : "";
-                width = (summary.seats[party] / 6.5).toString().slice(0, 4) + "%";
+                width = (0.8 * summary.seats[party] / 6.5).toString().slice(0, 4) + "%";
             } else {
                
-                width = (summary.votes[party] / allVotes * 100).toString().slice(0, 4) + "%";
+                width = (0.8 * summary.votes[party] / allVotes * 100).toString().slice(0, 4) + "%";
             }
             row.getElementsByTagName("span").item(0).innerText = formatNumber(text);
             
