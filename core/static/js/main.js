@@ -213,7 +213,7 @@ function updateMap(dataObj) {
             document.getElementById(conId).style.fill = lookup[winner]; 
         } else {
             var proportion = party in dataObj[conId].parties ? dataObj[conId].parties[party] / (
-                Object.values(dataObj[conId].parties).reduce((a, b) => a + b) * 0.6
+                Object.values(dataObj[conId].parties).reduce((a, b) => a + b) * 0.45
             ): 0;
             var hex = (Math.round(proportion * 256)).toString(16);
             hex = hex.length === 1 ? "0" + hex : hex;
