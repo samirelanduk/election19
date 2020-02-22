@@ -1,5 +1,5 @@
 secrets.py
-*.json
+data.json
 *.pyc
 __pycache__
 .DS_Store
