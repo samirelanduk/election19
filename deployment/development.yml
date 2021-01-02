@@ -1,0 +1,19 @@
+services:
+  django:
+    image: samirelanduk/election19_django
+    env_file:
+      - secrets.env
+    volumes:
+      - static_volume:/home/app/static
+    ports:
+      - 8000:80
+  nginx:
+    image: samirelanduk/election19_nginx
+    volumes:
+      - static_volume:/home/app/static
+    depends_on:
+      - django
+    ports:
+      -  7000:80
+volumes:
+  static_volume:

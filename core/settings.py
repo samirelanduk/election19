@@ -1,11 +1,17 @@
 import os
-from .secrets import SECRET_KEY, BASE_DIR, DATABASES
-
-ALLOWED_HOSTS = []
 
 DEBUG = True
 
+if DEBUG:
+    from .secrets import SECRET_KEY
+else:
+    SECRET_KEY = os.environ["SECRETKEY"]
+
+ALLOWED_HOSTS = ["*"]
+
 ROOT_URLCONF = "core.urls"
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 INSTALLED_APPS = [
  "django.contrib.contenttypes",
@@ -23,12 +29,7 @@ MIDDLEWARE = [
 ]
 
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.abspath(f"{BASE_DIR}/../static")
-if DEBUG:
-    MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
-else:
-     MEDIA_ROOT = os.path.join(BASE_DIR, "..", "uploads")
-MEDIA_URL = "/uploads/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 SASS_PROCESSOR_ROOT = os.path.abspath(os.path.join(BASE_DIR, "core", "static"))
 
 TEMPLATES = [{

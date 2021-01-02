@@ -1,0 +1,22 @@
+services:
+  django:
+    image: samirelanduk/election19_django
+    env_file:
+      - secrets.env
+    volumes:
+      - static_volume:/home/app/static
+    expose:
+      - 80
+  nginx:
+    image: samirelanduk/election19_nginx
+    volumes:
+      - static_volume:/home/app/static
+    depends_on:
+      - django
+    expose:
+      - 80
+    environment:
+      - VIRTUAL_HOST=election19.samireland.com
+      - LETSENCRYPT_HOST=election19.samireland.com
+volumes:
+  static_volume:
